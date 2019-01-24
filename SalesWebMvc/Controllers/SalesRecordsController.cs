@@ -29,12 +29,11 @@ namespace SalesWebMvc.Controllers
 
         public async Task<IActionResult> Create()
         {
-            var directions = from SaleStatus d in Enum.GetValues(typeof(SaleStatus))
-                             select new { Id = (int)d, Name = d.ToString() };
-            //return new SelectList(directions, "Id", "Name");
+            var directions = from SaleStatus s in Enum.GetValues(typeof(SaleStatus))
+                             select new { Id = (int)s, Name = s.ToString() };
 
             var sellers = await _sellerService.FindAllAsync();
-            var viewModel = new SalesRecordFormViewModel { Sellers = sellers, Teste = new SelectList(directions, "Id", "Name") };
+            var viewModel = new SalesRecordFormViewModel { Sellers = sellers, Status = new SelectList(directions, "Id", "Name") };
             return View(viewModel);
         }
 
@@ -44,11 +43,11 @@ namespace SalesWebMvc.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var directions = from SaleStatus d in Enum.GetValues(typeof(SaleStatus))
-                                 select new { Id = (int)d, Name = d.ToString() };
+                var directions = from SaleStatus s in Enum.GetValues(typeof(SaleStatus))
+                                 select new { Id = (int)s, Name = s.ToString() };
 
                 var sellers = await _sellerService.FindAllAsync();
-                var viewModel = new SalesRecordFormViewModel { Sellers = sellers, Teste = new SelectList(directions, "Id", "Name") };
+                var viewModel = new SalesRecordFormViewModel { Sellers = sellers, Status = new SelectList(directions, "Id", "Name") };
                 return View(viewModel);
             }
 

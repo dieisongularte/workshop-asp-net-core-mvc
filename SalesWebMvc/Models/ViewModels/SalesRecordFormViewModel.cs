@@ -11,13 +11,6 @@ namespace SalesWebMvc.Models.ViewModels
     {
         public SalesRecord SalesRecord { get; set; }
         public ICollection<Seller> Sellers { get; set; }
-        public SelectList Teste { get; set; }
-
-        /*public SelectList Teste()
-        {
-            var directions = from SaleStatus d in Enum.GetValues(typeof(SaleStatus))
-                             select new { Id = (int)d, Name = d.ToString() };
-            return new SelectList(directions, "Id", "Name");
-        }*/
+        public SelectList Status { get; set; }
     }
 }
